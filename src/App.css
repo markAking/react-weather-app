@@ -1,38 +1,184 @@
-.App {
-  text-align: center;
+.header {
+  position: relative; 
+  background-color: #666;
+  padding: 20px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header h1 {
+  color: #fff;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.icon {
+  font-size: 20px;
+  color: #fff;
+  position: absolute;
+  top:10px;
+  right: 10px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.icon:hover {
+  color: #e5e5e5;
+}
+
+.contentArea {
+  margin: 0 15px;
+}
+
+.spaceEven {
+  justify-content: space-between;
+}
+
+#addCity {
+  padding-top: 5px;
+}
+
+.weatherList {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+.cardWrapper {
+  max-width: 32rem;
+  margin: 0.5rem;
+}
+.card-header {
+  background-color: #333;
+  color: #fff;
+  border-bottom: 1px solid #FFF;
+}
+.card-body {
+  background-color: #666;
+  padding: 0;
+}
+.temprature {
+  padding: 10px;
+  float: left;
+}
+
+.submit {
+  background-color: #666;
+  color: #FFF;
+  border: 2px solid #666;
+}
+
+.tempratureBig {
+  color: #fff;
+  font-size: 80px;
+  line-height: 70px;
+  padding: 0;
+  margin: 0;
+}
+
+.localBlock {
   color: white;
+  margin: 0 5px;
+  text-align: left;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+}
+.localBlockM {
+  color: white;
+  margin: 0;
+  text-align: left;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+}
+.dayblock {
+  background-color: transparent;
+  border-left: 1px solid #FFF;
+  border-bottom: 1px solid #FFF;
+  color: white;
+  padding: 8px 32px;
+  text-align: left;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  line-height: 32px;
+}
+.dayblockLast {
+  background-color: transparent;
+  border-left: 1px solid #FFF;
+  color: white;
+  padding: 8px 32px;
+  text-align: left;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  line-height: 32px;
 }
 
-.App-link {
-  color: #61dafb;
+.imgWht {
+  color: white;
+  width: 140px;
+  display: block;
+  margin: 0 auto;
+  padding: 5px 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.widgetCol {
+  float: left;
+}
+.widgetColRight {
+  float: right;
+}
+.padding-0 {
+  padding-right: 10px;
+  padding-left: 0;
+}
+
+.detailExpanded {
+  margin: 0;
+}
+.detailExpanded div {
+  color: white;
+  padding: 10px;
+  width: 20%;
+}
+.detailExpanded div:nth-of-type(1) {
+  background-color: #888;
+}
+.detailExpanded div:nth-of-type(2),
+#weatherDetails .weatherDataContainer:nth-of-type(2) {
+  background-color: #777;
+}
+.detailExpanded div:nth-of-type(3),
+#weatherDetails .weatherDataContainer:nth-of-type(3) {
+  background-color: #666;
+}
+.detailExpanded div:nth-of-type(4),
+#weatherDetails .weatherDataContainer:nth-of-type(4) {
+  background-color: #555;
+}
+.detailExpanded div:nth-of-type(5),
+#weatherDetails .weatherDataContainer:nth-of-type(5) {
+  background-color: #444;
+}
+
+
+#weatherDetails ul {
+  list-style-type: none;
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+}
+
+#weatherDetails li {
+  display: table-cell;
+  width: 50%;
+}
+
+#weatherDetails .weatherDataContainer {
+  background-color: #888;
+  color: white;
+  padding: 10px;
+}
+
+
+#weatherDetails .weatherDataLabel {
+  background-color: white;
+  color: #000;
+  padding: 0 10px;
 }
