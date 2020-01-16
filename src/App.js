@@ -1,9 +1,10 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
-import './App.css';
-import Header from './components/Common/header';
-import HomePage from './components/Home/home';
-import DetailView from './components/DetailView/DetailView';
+import React from "react";
+import { Route } from "react-router-dom";
+import "./App.css";
+import Header from "./components/Common/header";
+import HomePage from "./components/Home/home";
+import DetailView from "./components/DetailView/DetailView";
+import FiveDayForecast from "./components/FiveDayForecast/FiveDayForecast";
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       <div className="contentArea">
         <Route exact path="/" component={HomePage} />
         <Route path="/home" component={HomePage} />
-        <Route path="/DetailView/:cityName" component={DetailView} />
+        <Route path="/DetailView/:city" component={DetailView} />
+        <Route path="/FiveDayForecast/:city" component={FiveDayForecast} />
       </div>
     </div>
   );

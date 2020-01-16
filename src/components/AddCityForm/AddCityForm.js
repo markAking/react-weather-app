@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { addCity } from '../../services/location.actions';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { addCity } from "../../services/location.actions";
 
 class AddCityForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue: '',
+      inputValue: ""
     };
   }
 
@@ -17,8 +17,10 @@ class AddCityForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.addCity(this.state.inputValue);
-    this.setState({ inputValue: '' });
+    if (this.state.inputValue !== "") {
+      this.props.addCity(this.state.inputValue);
+      this.setState({ inputValue: "" });
+    }
   };
 
   render() {
@@ -47,7 +49,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(AddCityForm);
+export default connect(null, mapDispatchToProps)(AddCityForm);

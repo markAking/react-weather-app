@@ -1,29 +1,54 @@
 import {
   ADD_CITY,
+  REMOVE_CITY,
   LOAD_CITY_FAILURE,
   LOAD_CITY_IN_PROGRESS,
-  LOAD_CITY_SUCCESS,
-} from './action.types';
+  LOAD_CITY_WEATHER_SUCCESS,
+  LOAD_CITY_FORCAST_SUCCESS
+} from "./action.types";
 
 export default function locationReducer(
-  state = [ { city: 'New York' } ],
+  state = [{ city: "New York" }],
   action
 ) {
   switch (action.type) {
     case ADD_CITY:
       const newCity = {
-        city: action.city,
+        city: action.city
       };
       return [...state, newCity];
 
-    case LOAD_CITY_SUCCESS:
+    case REMOVE_CITY:
+      const cities = state.filter(cityObj => {
+        return cityObj.city !== action.city;
+      });
+      return [...cities];
+
+    case LOAD_CITY_WEATHER_SUCCESS:
       return state.map(cityObj => {
         if (cityObj.city === action.city) {
+          setTempColor(action.weatherData);
           return {
             ...cityObj,
             failure: false,
             loading: false,
-            weatherData: action.weatherData,
+            weatherData: action.weatherData
+          };
+        }
+        return cityObj;
+      });
+
+    case LOAD_CITY_FORCAST_SUCCESS:
+      return state.map(cityObj => {
+        if (cityObj.city === action.city) {
+          action.forcastData.list.forEach(element => {
+            setTempColor(element);
+          });
+          return {
+            ...cityObj,
+            failure: false,
+            loading: false,
+            forcastData: action.forcastData
           };
         }
         return cityObj;
@@ -36,7 +61,7 @@ export default function locationReducer(
             ...cityObj,
             failure: true,
             loading: false,
-            error: action.error,
+            error: action.error
           };
         }
         return cityObj;
@@ -47,7 +72,7 @@ export default function locationReducer(
         if (cityObj.city === action.city) {
           return {
             ...cityObj,
-            loading: true,
+            loading: true
           };
         }
         return cityObj;
@@ -56,4 +81,11 @@ export default function locationReducer(
     default:
       return state;
   }
+}
+
+function setTempColor(data) {
+  let temp = Math.round(data.main.temp);
+  temp = temp < 100 ? temp : 100;
+  const hue = Math.round(280 - 280 * (temp / 100));
+  data.tempColor = `hsl(${hue}, 100%, 40%)`;
 }

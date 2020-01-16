@@ -1,63 +1,70 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import CityWeather from '../CityWeather/CityWeather';
-import DetailExpanded from './DetailExpanded';
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import CityWeather from "../CityWeather/CityWeather";
+import { loadCityForcast } from "../../services/location.actions";
 
-const DetailView = ({ match }) => {
-  const city = match.params.cityName;
-  console.log(match)
+const DetailView = ({ match, loadCityForcastData, forcastData, failure }) => {
+  const city = match.params.city;
+  useEffect(() => {
+    if (city) {
+      loadCityForcastData(city);
+    }
+  }, [city, loadCityForcastData]);
   return (
     <div>
       <div className="row spaceEven">
         <h2>Weather Details</h2>
         <span className="navBar">
-          <Link to={`/fiveDayForecast/${city}`} className="navElement">Five Day Forecast</Link>
+          <Link to={`/FiveDayForecast/${city}`} className="navElement">
+            Five Day Forecast
+          </Link>
         </span>
       </div>
       <div className="row">
         <div className="col">
-          <CityWeather cityName={city} expanded={true} />
+          <CityWeather city={city} expanded={true} />
         </div>
         <div className="col">
-          {/* Component for Listing Encapsulate */}
           <div id="weatherDetails">
             <ul className="weatherDataLabel">
-              <li>Time</li>
-              <li>Event</li>
-              <li>Precip</li>
-              <li>Humidity</li>
-              <li>Wind</li>
+              <li>
+                <strong>Time</strong>
+              </li>
+              <li>
+                <strong>Temp</strong>
+              </li>
+              <li>
+                <strong>Event</strong>
+              </li>
+              <li>
+                <strong>Humidity</strong>
+              </li>
+              <li>
+                <strong>Wind</strong>
+              </li>
             </ul>
-            {/* Iterate results for hourly results */}
-            <ul className="weatherDataContainer">
-              <li>11:00 am</li>
-              <li>Cloudy</li>
-              <li>56&deg;</li>
-              <li>56&deg;</li>
-              <li>56&deg;</li>
-            </ul>
-            <ul className="weatherDataContainer">
-              <li>12:00 pm</li>
-              <li>Cloudy Rains</li>
-              <li>56&deg;</li>
-              <li>56&deg;</li>
-              <li>56&deg;</li>
-            </ul>
-            <ul className="weatherDataContainer">
-              <li>1:00 pm</li>
-              <li>Cloudy</li>
-              <li>56&deg;</li>
-              <li>56&deg;</li>
-              <li>56&deg;</li>
-            </ul>
-            <ul className="weatherDataContainer">
-              <li>2:00 pm</li>
-              <li>Cloudy Winds</li>
-              <li>56&deg;</li>
-              <li>56&deg;</li>
-              <li>56&deg;</li>
-            </ul>
+            {failure && <h4>Failed to load data</h4>}
+            {forcastData && forcastData.list ? (
+              forcastData.list.slice(0, 5).map(item => (
+                <React.Fragment key={item.dt}>
+                  <ul
+                    className="weatherDataContainer"
+                    style={{
+                      backgroundColor: item.tempColor
+                    }}
+                  >
+                    <li>{getTheTime(item.dt_txt)}</li>
+                    <li>{Math.round(item.main.temp)}&deg;</li>
+                    <li>{item.weather[0].main}</li>
+                    <li>{parseInt(item.main.humidity)}%</li>
+                    <li>{parseInt(item.wind.speed)} mph</li>
+                  </ul>
+                </React.Fragment>
+              ))
+            ) : (
+              <h4>Loading</h4>
+            )}
           </div>
         </div>
       </div>
@@ -65,8 +72,21 @@ const DetailView = ({ match }) => {
   );
 };
 
-function mapStateToProps(state, props) {
-  return state.locations.find(cityObj => cityObj.city === props.cityName);
+function getTheTime(date) {
+  let d = new Date(date);
+  return d.toLocaleTimeString();
 }
 
-export default DetailView
+function mapStateToProps(state, props) {
+  return state.locations.find(
+    cityObj => cityObj.city === props.match.params.city
+  );
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    loadCityForcastData: city => dispatch(loadCityForcast(city))
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DetailView);

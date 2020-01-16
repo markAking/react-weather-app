@@ -1,5 +1,20 @@
+a,
+a:hover {
+  color: inherit;
+}
+
+.removeStyle {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
 .header {
-  position: relative; 
+  position: relative;
   background-color: #666;
   padding: 20px;
 }
@@ -12,7 +27,7 @@
   font-size: 20px;
   color: #fff;
   position: absolute;
-  top:10px;
+  top: 10px;
   right: 10px;
 }
 
@@ -27,7 +42,10 @@
 .spaceEven {
   justify-content: space-between;
 }
-
+.centerFlex {
+  display: flex;
+  justify-content: center;
+}
 #addCity {
   padding-top: 5px;
 }
@@ -43,35 +61,52 @@
   margin: 0.5rem;
 }
 .card-header {
+  display: flex;
+  justify-content: space-between;
   background-color: #333;
   color: #fff;
-  border-bottom: 1px solid #FFF;
+  text-shadow: 2px 2px 5px #000000;
+  border-bottom: 1px solid #fff;
 }
 .card-body {
   background-color: #666;
   padding: 0;
 }
+.card-body ul {
+  margin: 1rem 0;
+  color: white;
+}
 .temprature {
   padding: 10px;
-  float: left;
+  display: flex;
+  justify-content: space-between;
 }
 
-.submit {
-  background-color: #666;
-  color: #FFF;
-  border: 2px solid #666;
-}
-
-.tempratureBig {
+.temprature h3 {
   color: #fff;
+  text-shadow: 2px 2px 5px #000000;
   font-size: 80px;
   line-height: 70px;
   padding: 0;
   margin: 0;
 }
+.temprature img {
+  height: 124px;
+}
+.weatherIcon {
+  color: #fff;
+  font-size: 124px;
+}
+
+.submit {
+  background-color: #666;
+  color: #fff;
+  border: 2px solid #666;
+}
 
 .localBlock {
   color: white;
+  text-shadow: 2px 2px 5px #000000;
   margin: 0 5px;
   text-align: left;
   text-decoration: none;
@@ -80,6 +115,7 @@
 }
 .localBlockM {
   color: white;
+  text-shadow: 2px 2px 5px #000000;
   margin: 0;
   text-align: left;
   text-decoration: none;
@@ -88,9 +124,10 @@
 }
 .dayblock {
   background-color: transparent;
-  border-left: 1px solid #FFF;
-  border-bottom: 1px solid #FFF;
+  border-left: 1px solid #fff;
+  border-bottom: 1px solid #fff;
   color: white;
+  text-shadow: 2px 2px 5px #000000;
   padding: 8px 32px;
   text-align: left;
   text-decoration: none;
@@ -100,8 +137,9 @@
 }
 .dayblockLast {
   background-color: transparent;
-  border-left: 1px solid #FFF;
+  border-left: 1px solid #fff;
   color: white;
+  text-shadow: 2px 2px 5px #000000;
   padding: 8px 32px;
   text-align: left;
   text-decoration: none;
@@ -112,6 +150,7 @@
 
 .imgWht {
   color: white;
+  text-shadow: 2px 2px 5px #000000;
   width: 140px;
   display: block;
   margin: 0 auto;
@@ -122,7 +161,7 @@
   float: left;
 }
 .widgetColRight {
-  float: right;
+  margin: -10px -10px -10px 10px;
 }
 .padding-0 {
   padding-right: 10px;
@@ -134,35 +173,37 @@
 }
 .detailExpanded div {
   color: white;
+  text-shadow: 2px 2px 5px #000000;
   padding: 10px;
   width: 20%;
 }
-.detailExpanded div:nth-of-type(1) {
+.detailExpanded div:nth-of-type(1),
+#weatherDetails .weatherDataContainer:nth-of-type(2) {
   background-color: #888;
 }
 .detailExpanded div:nth-of-type(2),
-#weatherDetails .weatherDataContainer:nth-of-type(2) {
+#weatherDetails .weatherDataContainer:nth-of-type(3) {
   background-color: #777;
 }
 .detailExpanded div:nth-of-type(3),
-#weatherDetails .weatherDataContainer:nth-of-type(3) {
+#weatherDetails .weatherDataContainer:nth-of-type(4) {
   background-color: #666;
 }
 .detailExpanded div:nth-of-type(4),
-#weatherDetails .weatherDataContainer:nth-of-type(4) {
+#weatherDetails .weatherDataContainer:nth-of-type(5) {
   background-color: #555;
 }
 .detailExpanded div:nth-of-type(5),
-#weatherDetails .weatherDataContainer:nth-of-type(5) {
+#weatherDetails .weatherDataContainer:nth-of-type(6) {
   background-color: #444;
 }
-
 
 #weatherDetails ul {
   list-style-type: none;
   width: 100%;
   display: table;
   table-layout: fixed;
+  margin-bottom: 2px;
 }
 
 #weatherDetails li {
@@ -173,12 +214,28 @@
 #weatherDetails .weatherDataContainer {
   background-color: #888;
   color: white;
-  padding: 10px;
+  text-shadow: 2px 2px 5px #000000;
+  padding: 15px 10px;
 }
-
 
 #weatherDetails .weatherDataLabel {
   background-color: white;
   color: #000;
   padding: 0 10px;
+}
+
+.dayCard {
+  padding: 5px;
+  color: white;
+  text-shadow: 2px 2px 5px #000000;
+  text-align: center;
+  margin: 5px;
+}
+
+.dayCard h1 {
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 5px #000000;
+}
+.dayCard .temprature img {
+  height: 50px;
 }

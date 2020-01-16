@@ -1,13 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import './index.css';
-import './bootstrap.min.css';
-import App from './App';
-
-import configureStore from './services/configure-store';
-const store = configureStore();
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import "./index.css";
+import "./bootstrap.min.css";
+import App from "./App";
+import { store } from "./services/configureStore";
 
 ReactDOM.render(
   <Provider store={store}>
@@ -15,5 +13,5 @@ ReactDOM.render(
       <App />
     </BrowserRouter>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
