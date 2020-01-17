@@ -85,7 +85,7 @@ export default function locationReducer(
 
 function setTempColor(data) {
   let temp = Math.round(data.main.temp);
-  temp = temp < 100 ? temp : 100;
+  temp = temp > 100 ? 100 : temp < 0 ? 0 : temp;
   const hue = Math.round(280 - 280 * (temp / 100));
   data.tempColor = `hsl(${hue}, 100%, 40%)`;
 }

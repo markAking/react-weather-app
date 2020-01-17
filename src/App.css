@@ -69,12 +69,12 @@ a:hover {
   border-bottom: 1px solid #fff;
 }
 .card-body {
-  background-color: #666;
+  background-color: #ccc;
+  background-size: cover;
   padding: 0;
 }
 .card-body ul {
   margin: 1rem 0;
-  color: white;
 }
 .temprature {
   padding: 10px;

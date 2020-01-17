@@ -59,9 +59,14 @@ class CityWeather extends Component {
             <div
               className="card-body"
               style={{
-                backgroundColor:
+                backgroundImage:
                   weatherData && weatherData.main
-                    ? weatherData.tempColor
+                    ? "url(" +
+                      getBackground(
+                        weatherData.coord.lat,
+                        weatherData.coord.lon
+                      ) +
+                      ")"
                     : "initial"
               }}
             >
@@ -147,6 +152,32 @@ CityWeather.defaultProps = {
   failure: false,
   weatherData: null
 };
+
+function getBackground(lat, lon) {
+  const API_KEY = process.env.REACT_APP_OWM_API_KEY;
+  return `"https://tile.openweathermap.org/map/temp_new/${getTileURL(
+    lat,
+    lon,
+    8
+  )}.png?appid=${API_KEY}"`;
+}
+
+function getTileURL(lat, lon, zoom) {
+  var xtile = parseInt(Math.floor(((lon + 180) / 360) * (1 << zoom)));
+  var ytile = parseInt(
+    Math.floor(
+      ((1 -
+        Math.log(Math.tan(toRad(lat)) + 1 / Math.cos(toRad(lat))) / Math.PI) /
+        2) *
+        (1 << zoom)
+    )
+  );
+  return "" + zoom + "/" + xtile + "/" + ytile;
+}
+
+function toRad(Value) {
+  return (Value * Math.PI) / 180;
+}
 
 function getTheTime(date) {
   let d = new Date();

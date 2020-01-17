@@ -7,7 +7,7 @@ import { loadCityForcast } from "../../services/location.actions";
 const DetailView = ({ match, loadCityForcastData, forcastData, failure }) => {
   const city = match.params.city;
   useEffect(() => {
-    if (city) {
+    if (city && !forcastData) {
       loadCityForcastData(city);
     }
   }, [city, loadCityForcastData]);
@@ -46,7 +46,7 @@ const DetailView = ({ match, loadCityForcastData, forcastData, failure }) => {
             </ul>
             {failure && <h4>Failed to load data</h4>}
             {forcastData && forcastData.list ? (
-              forcastData.list.slice(0, 5).map(item => (
+              forcastData.list.slice(0, 7).map(item => (
                 <React.Fragment key={item.dt}>
                   <ul
                     className="weatherDataContainer"
@@ -73,7 +73,7 @@ const DetailView = ({ match, loadCityForcastData, forcastData, failure }) => {
 };
 
 function getTheTime(date) {
-  let d = new Date(date);
+  const d = new Date(date);
   return d.toLocaleTimeString();
 }
 
