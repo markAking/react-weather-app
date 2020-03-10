@@ -11,8 +11,7 @@ class AddCityForm extends Component {
   }
 
   handleChange = event => {
-    const inputValue = event.target.value;
-    this.setState({ inputValue });
+    this.setState({ inputValue: event.target.value });
   };
 
   handleSubmit = event => {
